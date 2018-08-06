@@ -1,0 +1,8 @@
+* {
+  outline: 1px dashed red;
+}
+#page-wrapper {
+  display: grid;
+  grid-template-rows: 200px 1fr 100px;
+}
+/*# sourceMappingURL=default.css.map */
