@@ -1,18 +1,29 @@
 * {
   outline: 1px dashed red;
   box-sizing: content-box;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 14px;
 }
+
+/* Mixins */
 
 .flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
 
+.standard-padding {
+  padding: 0 1vw;
+}
+
+/* Styles */
+
 #page-wrapper {
-  height: 100vh;
+  min-height: 100vh;
   display: grid;
-  grid-template-rows: 100px 1fr 100px;
+  grid-template-rows: 100px 1fr 50px;
 }
 
 #header {
@@ -55,16 +66,23 @@
 
 #footer {
 
-  .contact-us {
+  background-color: #ddd;
+  display: flex;
+  justify-content: space-evenly;
 
+  .contact-us {
+    flex: 1;
+    .flex-center;
   }
 
   .social-media {
-
+    flex: 2;
+    .flex-center;
   }
 
   .subscribe {
-
+    flex: 1;
+    .flex-center;
   }
 
 }
@@ -76,6 +94,7 @@
   .grid-wrapper {
 
     display: grid;
+    /* Mobile-first */
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 1rem;
 
@@ -90,24 +109,61 @@
     @media screen and (min-width: 800px) {
       grid-template-columns: repeat(4, 1fr);
     }
+    @media screen and (min-width: 1024px) {
+      grid-template-columns: repeat(5, 1fr);
+    }
 
     .grid-item {
+      position: relative;
+
+      div {
+        overflow: hidden;
+      }
+
+      .grid-item-spacer {
+        padding-top: 150%;
+      }
+
+      .grid-item-card {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-rows: 20% 1fr 15%;
+      }
 
       .grid-item-header {
-        height: 30px;
         .flex-center;
+        .standard-padding;
       }
 
       .grid-item-content {
         .flex-center;
-        height: 100px;
+        .standard-padding;
       }
 
       .grid-item-footer {
         .flex-center;
-        height: 20px;
+        .standard-padding;
+        font-size: 90%;
       }
 
+      &.condensed {
+
+        .grid-item-card {
+          grid-template-rows: 20% 1fr;
+        }
+
+        .grid-item-header {
+          background-color: #eee;
+        }
+
+        .grid-item-content {
+          background-color: aliceblue;
+        }
+      }
     }
 
   }
